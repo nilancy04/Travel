@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-
 }
 
-/*Colors and styling */
-:root{
+:root {
     --PrimaryColor: hsl(199, 100%, 33%);
     --SecondaryColor: hsl(187, 85%, 43%);
     --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
@@ -23,16 +21,15 @@
     --cardBG: rgb(225, 225, 235);
 }
 
-html{
-    scroll-behavior: smooth;
-
+body {
+    background: var(--bodyColor);
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-li{
+li {
     list-style: none;
 }
 
@@ -87,15 +84,15 @@ input{
     font-size: 100%;
 }
 
-body{
-    background: var(--bodyColor);
-}
+html{
+    scroll-behavior: smooth;
 
+}
 
 @media screen and (min-width: 1240px) {
     .container{
-        width: 80% !important; 
-        margin: auto !important;
+        width: 80%;
+        margin: auto;
     }
 
     .section{
@@ -106,7 +103,14 @@ body{
 
 @media screen and (min-width: 2560px) {
     body{
-        zoom: 1.7;
+        transform: scale(1.7);
+        transform-origin: center top;
     }
     
+}
+
+.page-container {
+    padding-top: 80px; /* Adjust based on your navbar height */
+    min-height: calc(100vh - 80px); /* Adjust based on your footer height */
+    background: var(--bodyColor);
 }

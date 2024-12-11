@@ -3,8 +3,8 @@ import './footer.css'
 import video2 from '../../Assests/video(2).mp4'
 import {FiChevronRight, FiSend} from 'react-icons/fi'
 import { MdOutlineTravelExplore } from 'react-icons/md'
-import { AiFillInstagram, AiFillYoutube, AiOutlineTwitter } from 'react-icons/ai'
-import { FaTripadvisor } from 'react-icons/fa'
+import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai'
+import { FaTripadvisor, FaLinkedinIn, FaGithub } from 'react-icons/fa'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
@@ -48,10 +48,21 @@ const Footer = () => {
                 </div> */}
 
                 <div data-aos="fade-up" className="footerSocials flex">
-                  <AiOutlineTwitter className="icon"/>
-                  <AiFillYoutube className="icon"/>
-                  <AiFillInstagram className="icon"/>
-                  <FaTripadvisor className="icon"/>
+                  <a href="https://twitter.com/nilancy2005" target="_blank" rel="noopener noreferrer">
+                    <AiOutlineTwitter className="icon"/>
+                  </a>
+                  <a href="https://linkedin.com/in/nilancy04" target="_blank" rel="noopener noreferrer">
+                    <FaLinkedinIn className="icon"/>
+                  </a>
+                  <a href="https://instagram.com/nncy_.45" target="_blank" rel="noopener noreferrer">
+                    <AiFillInstagram className="icon"/>
+                  </a>
+                  <a href="https://github.com/nilancy04" target="_blank" rel="noopener noreferrer">
+                    <FaGithub className="icon"/>
+                  </a>
+                  <a href="https://tripadvisor.com/YourProfile" target="_blank" rel="noopener noreferrer">
+                    <FaTripadvisor className="icon"/>
+                  </a>
                 </div>
               </div>
               <div className="footerLinks grid">
@@ -158,7 +169,7 @@ const Footer = () => {
 
                 </div>
                 <div className="footerDiv flex">
-                  <small>BEST TRAVEL WEBSITE THEME</small>
+                  <small>BEST TRAVEL WEBSITE </small>
                   <small>COPYRIGHTS RESERVED - NILANCY 2024</small>
                 </div>
               </div>

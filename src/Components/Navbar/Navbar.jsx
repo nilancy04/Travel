@@ -1,74 +1,74 @@
 import React, {useState} from 'react'
 import './navbar.css'
-import{MdOutlineTravelExplore} from 'react-icons/md'
-// import{AiFillCloseCircle} from 'react-icons/ai'
-// import{TbGridDots} from 'react-icons/tb'
+import {MdOutlineTravelExplore} from 'react-icons/md'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-    const [active,  setActive] = useState('navBar')
+    const [active, setActive] = useState('navBar')
+    const navigate = useNavigate()
     
-    const showNav = ()=>{
-        setActive('navBar activeNavbar')
+    const handleHomeClick = (e) => {
+        e.preventDefault()
+        navigate('/')
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
     }
-    const removeNavbar = ()=>{
-        setActive('navBar')
+
+    const handleDestinationClick = (e) => {
+        if (window.location.pathname === '/') {
+            e.preventDefault()
+            const element = document.getElementById('destinations')
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                })
+            }
+        }
     }
+
   return (
     <section className='navBarSection'>
-      <header className="header flex">
-
+      <header className="header">
         <div className="logoDiv">
-           <a href="#" className="logo flex">
-            <h1><MdOutlineTravelExplore className="icon"/>   Travel.</h1>
-           </a>
+           <Link to="/" onClick={handleHomeClick} className="logo">
+            <h1>
+              <MdOutlineTravelExplore className="icon"/>
+              <span className="logoText">Travel</span>
+            </h1>
+           </Link>
         </div>
 
-        <div className={active}>
-            <ul className="navLists flex">
-
-                <li className="navItems">
-                    <a href="#" className="navLink">Home</a>
+        <div className="navigationDiv">
+            <ul className="navList">
+                <li>
+                    <Link to="/" onClick={handleHomeClick}>Home</Link>
                 </li>
 
-                <li className="navItems">
-                    <a href="#" className="navLink">Packages</a>
+                <li>
+                    <Link to="/destinations" onClick={handleDestinationClick}>Destinations</Link>
                 </li>
 
-                <li className="navItems">
-                    <a href="#" className="navLink">Shop</a>
+                <li>
+                    <Link to="/about">About</Link>
                 </li>
 
-                <li className="navItems">
-                    <a href="#" className="navLink">About</a>
+                <li>
+                    <Link to="/planner">Travel Planner</Link>
                 </li>
 
-                <li className="navItems">
-                    <a href="#" className="navLink">Pages</a>
+                <li>
+                    <Link to="/contact">Contact</Link>
                 </li>
 
-                <li className="navItems">
-                    <a href="#" className="navLink">News</a>
-                </li>
-
-                <li className="navItems">
-                    <a href="#" className="navLink">Contact</a>
-                </li>
-                <button>
-                    <a href="#">BOOK NOW</a>
+                <button className="btn">
+                    <Link to="/explore">Explore Now</Link>
                 </button>
             </ul>
-
-            {/* <div  onClick={removeNavbar}
-            className="closeNavBar"></div>
-            <AiFillCloseCircle  className="icon" /> */}
         </div>
-
-        {/* <div  onClick={showNav}
-        className="toggleNavBar">
-        <TbGridDots  className="icon" />
-        </div> */}
-
-    </header>
+      </header>
     </section>
   )
 }
