@@ -1147,32 +1147,55 @@
 /* Add these new styles to your existing CSS file */
 
 .searchContainer {
-    justify-content: space-between;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     gap: 1rem;
-  }
-  
-  .searchContainer .searchOptions,
-  .searchContainer .searchButton {
-    width: 48%; /* Adjust this value to control button width */
+    margin-top: 1rem;
+}
+
+.searchContainer .searchOptions,
+.searchContainer .searchButton {
+    flex: 0 0 auto;
+    display: flex;
     justify-content: center;
     align-items: center;
-    padding: .6rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     border-radius: 3rem;
     background: var(--gradientColor);
     cursor: pointer;
-  }
-  
-  .searchContainer .searchOptions span,
-  .searchContainer .searchButton span {
-    font-size: .8rem;
+    transition: background 0.3s ease;
+}
+
+.searchContainer .searchOptions span,
+.searchContainer .searchButton span {
+    font-size: 0.8rem;
     color: white;
-    margin-left: .5rem;
-  }
-  
-  .searchContainer .searchOptions:hover,
-  .searchContainer .searchButton:hover {
+    margin-left: 0.5rem;
+}
+
+.searchContainer .searchOptions:hover,
+.searchContainer .searchButton:hover {
     background: var(--PrimaryColor);
-  }
+}
+
+.priceInput .input input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--textColor);
+  background: var(--whiteColor);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.priceInput .input input[type="number"]:focus {
+  border-color: var(--PrimaryColor);
+  box-shadow: 0 0 0 3px rgba(var(--PrimaryColor), 0.1);
+  outline: none;
+}
 
 
 

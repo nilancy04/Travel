@@ -44,10 +44,11 @@ const Home = () => {
   useEffect(() => {
     let marker = null;
     let geocoder = null;
+    let newMap = null;
 
     if (showMap && mapContainer.current) {
       try {
-        const newMap = new mapboxgl.Map({
+        newMap = new mapboxgl.Map({
           container: mapContainer.current,
           style: 'mapbox://styles/ps2265/cm4yexjnl006401s90i7rav18',
           center: [0, 0],
@@ -105,12 +106,14 @@ const Home = () => {
     return () => {
       if (marker) {
         marker.remove();
+        marker = null;
       }
       if (geocoder) {
         geocoder.clear();
+        geocoder = null;
       }
-      if (map) {
-        map.remove();
+      if (newMap) {
+        newMap.remove();
         setMap(null);
       }
     };
@@ -204,27 +207,34 @@ const Home = () => {
           <div className="priceInput">
             <div className="label_total flex">
               <label htmlFor="price">Price:</label>
-              <h3 className="total">${price}</h3>
+              <h3 className="total">₹{price}</h3>
             </div>
             <div className="input flex">
               <input 
-                type="range" 
-                max="5000" 
-                min="2000"
+                type="number" 
+                id="price"
+                min="500"
+                max="5000"
                 step="100"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                placeholder="Enter your budget"
               />
             </div>
             <div className="price_range flex">
-              <span className="min_price">Min: $500</span>
-              <span className="max_price">Max: $5000</span>
+              <span className="min_price">Min: ₹500</span>
+              <span className="max_price">Max: ₹5000</span>
             </div>
           </div>
 
-          <div className="searchOptions flex" onClick={handleFilterClick}>
-            <HiFilter className="icon"/>
-            <span>MORE FILTERS</span>
+          <div className="searchContainer flex">
+            <div className="searchOptions flex" onClick={handleFilterClick}>
+              <HiFilter className="icon"/>
+              <span>MORE FILTERS</span>
+            </div>
+            <div className="searchButton flex" onClick={handleSearch}>
+              <span>SEARCH</span>
+            </div>
           </div>
           
 
