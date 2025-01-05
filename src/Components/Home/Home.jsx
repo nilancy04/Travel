@@ -12,6 +12,12 @@ import { FaLinkedinIn } from 'react-icons/fa'
 
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoicHMyMjY1IiwiYSI6ImNtMTNzbjBlbzB6cWMycnI1MnM4ejFyYnoifQ.FcxrQ__CESbNjW1nMb3-WQ';
 
 const Home = () => {
   const [destination, setDestination] = useState('')
@@ -27,10 +33,88 @@ const Home = () => {
     budgetCategory: 'any',
     activities: []
   })
+  const [showMap, setShowMap] = useState(false);
+  const [map, setMap] = useState(null);
+  const mapContainer = React.useRef(null);
 
   useEffect(()=>{
     Aos.init({duration: 2000})
   }, [])
+
+  useEffect(() => {
+    let marker = null;
+    let geocoder = null;
+
+    if (showMap && mapContainer.current) {
+      try {
+        const newMap = new mapboxgl.Map({
+          container: mapContainer.current,
+          style: 'mapbox://styles/ps2265/cm4yexjnl006401s90i7rav18',
+          center: [0, 0],
+          zoom: 1,
+          width: '100%',
+          height: '100%'
+        });
+
+        newMap.on('load', () => {
+          marker = new mapboxgl.Marker();
+          
+          geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+            marker: false,
+            placeholder: 'Search for places',
+            zoom: 12
+          });
+
+          newMap.addControl(geocoder);
+
+          geocoder.on('result', (e) => {
+            if (marker) {
+              marker.remove();
+            }
+            
+            const coordinates = e.result.geometry.coordinates;
+            
+            marker.setLngLat(coordinates).addTo(newMap);
+            
+            newMap.flyTo({
+              center: coordinates,
+              zoom: 12,
+              essential: true,
+              duration: 2000
+            });
+
+            setDestination(e.result.place_name);
+          });
+
+          geocoder.on('clear', () => {
+            if (marker) {
+              marker.remove();
+            }
+          });
+        });
+
+        setMap(newMap);
+      } catch (error) {
+        console.error('Error initializing map:', error);
+      }
+    }
+
+    // Cleanup function
+    return () => {
+      if (marker) {
+        marker.remove();
+      }
+      if (geocoder) {
+        geocoder.clear();
+      }
+      if (map) {
+        map.remove();
+        setMap(null);
+      }
+    };
+  }, [showMap]);
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -93,7 +177,15 @@ const Home = () => {
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
               />
-              <GrLocation className="icon"/>
+              <GrLocation 
+                className="icon"
+                onClick={() => {
+                  if (!showMap) {
+                    setShowMap(true);
+                  }
+                }}
+                style={{ cursor: 'pointer' }}
+              />
             </div>
           </div>
 
@@ -134,6 +226,7 @@ const Home = () => {
             <HiFilter className="icon"/>
             <span>MORE FILTERS</span>
           </div>
+          
 
           {showFilters && (
             <>
@@ -345,6 +438,29 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {showMap && (
+        <>
+          <div className="modalOverlay" onClick={() => setShowMap(false)} />
+          <div className="mapModal">
+            <div className="mapContent" onClick={e => e.stopPropagation()}>
+              <button 
+                className="closeBtn" 
+                onClick={() => {
+                  setShowMap(false);
+                }}
+              >
+                ×
+              </button>
+              <div 
+                ref={mapContainer} 
+                className="mapContainer" 
+                style={{ width: '100%', height: '400px' }}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </section>
   )
 }
