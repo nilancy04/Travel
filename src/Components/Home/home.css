@@ -1197,6 +1197,79 @@
   outline: none;
 }
 
+.flightResults {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flightCard {
+  padding: 1rem;
+  border: 1px solid var(--PrimaryColor);
+  border-radius: 8px;
+  background: var(--whiteColor);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--PrimaryColor);
+  border-radius: 8px;
+  background: var(--whiteColor);
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: black;
+}
+
+.suggestions li:hover {
+  background: var(--PrimaryColor);
+  color: var(--whiteColor);
+}
+
+.destinationInput {
+  margin-bottom: 1rem;
+}
+
+.input {
+  position: relative;
+}
+
+.suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--PrimaryColor);
+  border-radius: 8px;
+  background: var(--whiteColor);
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: black;
+}
+
+.suggestions li:hover {
+  background: var(--PrimaryColor);
+  color: var(--whiteColor);
+}
+
 
 
 

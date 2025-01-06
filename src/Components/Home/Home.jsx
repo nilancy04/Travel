@@ -16,10 +16,13 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import { searchFlights, autosuggestLocations } from '../../services/amadeusService';
+import { useNavigate } from 'react-router-dom';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoicHMyMjY1IiwiYSI6ImNtMTNzbjBlbzB6cWMycnI1MnM4ejFyYnoifQ.FcxrQ__CESbNjW1nMb3-WQ';
 
 const Home = () => {
+  const [origin, setOrigin] = useState('')
   const [destination, setDestination] = useState('')
   const [travelDate, setTravelDate] = useState('')
   const [price, setPrice] = useState(5000)
@@ -36,6 +39,10 @@ const Home = () => {
   const [showMap, setShowMap] = useState(false);
   const [map, setMap] = useState(null);
   const mapContainer = React.useRef(null);
+  const [flights, setFlights] = useState([]);
+  const [originSuggestions, setOriginSuggestions] = useState([]);
+  const [destinationSuggestions, setDestinationSuggestions] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     Aos.init({duration: 2000})
@@ -119,14 +126,91 @@ const Home = () => {
     };
   }, [showMap]);
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-    console.log('Search Details:', {
-      destination,
-      travelDate,
-      price
-    })
-  }
+  const handleOriginChange = async (e) => {
+    const query = e.target.value;
+    setOrigin(query);
+    
+    if (query.length >= 2) {
+      try {
+        console.log('Fetching suggestions for:', query);
+        const locations = await autosuggestLocations(query);
+        console.log('Received locations for origin:', locations);
+        setOriginSuggestions(locations || []);
+      } catch (error) {
+        console.error('Error in handleOriginChange:', error);
+        setOriginSuggestions([]);
+      }
+    } else {
+      setOriginSuggestions([]);
+    }
+  };
+
+  const handleDestinationChange = async (e) => {
+    const query = e.target.value;
+    setDestination(query);
+    
+    if (query.length >= 2) {
+      try {
+        console.log('Fetching suggestions for:', query);
+        const locations = await autosuggestLocations(query);
+        console.log('Received locations for destination:', locations);
+        setDestinationSuggestions(locations || []);
+      } catch (error) {
+        console.error('Error in handleDestinationChange:', error);
+        setDestinationSuggestions([]);
+      }
+    } else {
+      setDestinationSuggestions([]);
+    }
+  };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    
+    if (!origin || !destination || !travelDate) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    try {
+      const originCode = origin.match(/\(([^)]+)\)/)?.[1];
+      const destinationCode = destination.match(/\(([^)]+)\)/)?.[1];
+
+      if (!originCode || !destinationCode) {
+        alert('Please select valid locations from the suggestions');
+        return;
+      }
+
+      const formattedDate = new Date(travelDate).toISOString().split('T')[0];
+
+      console.log('Searching for flights...', {
+        origin: originCode,
+        destination: destinationCode,
+        date: formattedDate
+      });
+
+      const flightData = await searchFlights(originCode, destinationCode, formattedDate);
+      
+      if (flightData && flightData.data && flightData.data.length > 0) {
+        console.log('Found flights:', flightData.data);
+        navigate('/flight-results', { 
+          state: { 
+            flights: flightData.data,
+            searchDetails: {
+              origin: originCode,
+              destination: destinationCode,
+              date: formattedDate
+            }
+          } 
+        });
+      } else {
+        alert('No flights found for the selected criteria');
+      }
+    } catch (error) {
+      console.error('Search error:', error);
+      alert('Error searching flights. Please try again.');
+    }
+  };
 
   const handleFilterClick = (e) => {
     e.preventDefault()
@@ -171,14 +255,14 @@ const Home = () => {
 
         <form onSubmit={handleSearch} data-aos="fade-up" className="cardDiv grid">
           <div className="destinationInput">
-            <label htmlFor="destination">Search your destination:</label>
+            <label htmlFor="origin">From:</label>
             <div className="input flex">
               <input 
                 type="text" 
-                id="destination"
-                placeholder='Enter name here....'
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
+                id="origin"
+                placeholder='Enter origin here...'
+                value={origin}
+                onChange={handleOriginChange}
               />
               <GrLocation 
                 className="icon"
@@ -190,6 +274,58 @@ const Home = () => {
                 style={{ cursor: 'pointer' }}
               />
             </div>
+            {originSuggestions.length > 0 && (
+              <ul className="suggestions">
+                {originSuggestions.map((place, index) => (
+                  <li 
+                    key={index} 
+                    onClick={() => {
+                      setOrigin(`${place.name} (${place.iataCode})`);
+                      setOriginSuggestions([]);
+                    }}
+                  >
+                    {place.name} - {place.iataCode} - {place.cityName}, {place.countryName}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div className="destinationInput">
+            <label htmlFor="destination">To:</label>
+            <div className="input flex">
+              <input 
+                type="text" 
+                id="destination"
+                placeholder='Enter destination here...'
+                value={destination}
+                onChange={handleDestinationChange}
+              />
+              <GrLocation 
+                className="icon"
+                onClick={() => {
+                  if (!showMap) {
+                    setShowMap(true);
+                  }
+                }}
+                style={{ cursor: 'pointer' }}
+              />
+            </div>
+            {destinationSuggestions.length > 0 && (
+              <ul className="suggestions">
+                {destinationSuggestions.map((place, index) => (
+                  <li 
+                    key={index} 
+                    onClick={() => {
+                      setDestination(`${place.name} (${place.iataCode})`);
+                      setDestinationSuggestions([]);
+                    }}
+                  >
+                    {place.name} - {place.iataCode} - {place.cityName}, {place.countryName}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div className="dateInput">
