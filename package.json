@@ -29,7 +29,7 @@
     "w3c-hr-time": "^1.0.2",
     "stable": "^0.2.0",
     "rollup-plugin-terser": "^7.0.2",
-    "q": "^1.5.3",
+    "q": "1.5.1",
     "inflight": "^2.0.0"
   },
   "scripts": {
