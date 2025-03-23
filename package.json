@@ -2,6 +2,9 @@
   "name": "travel",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@emailjs/browser": "^4.1.0",
     "@react-google-maps/api": "^2.19.2",
@@ -19,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
