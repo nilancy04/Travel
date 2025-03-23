@@ -39,7 +39,7 @@ const Explore = () => {
       image: img1,
       rating: 4.8,
       reviews: 2453,
-      price: 1200,
+      price: 120,
       category: "historical",
       duration: "3 hours",
       description: "Explore the magnificent Mehrangarh Fort with expert guides. Learn about its rich history and architecture.",
@@ -52,7 +52,7 @@ const Explore = () => {
       image: img2,
       rating: 4.7,
       reviews: 1876,
-      price: 2500,
+      price: 250,
       category: "adventure",
       duration: "6 hours",
       description: "Experience the magic of Thar Desert with camel rides, traditional dinner, and cultural performances.",
@@ -65,7 +65,7 @@ const Explore = () => {
       image: img3,
       rating: 4.9,
       reviews: 1245,
-      price: 800,
+      price: 80,
       category: "cultural",
       duration: "4 hours",
       description: "Walk through the historic lanes of Jodhpur's old city, visiting local markets and heritage sites.",
@@ -78,7 +78,7 @@ const Explore = () => {
       image: img4,
       rating: 4.9,
       reviews: 856,
-      price: 1500,
+      price: 150,
       category: "food",
       duration: "3 hours",
       description: "Learn authentic Rajasthani cooking from local experts in a traditional home setting.",
@@ -91,7 +91,7 @@ const Explore = () => {
       image: img5,
       rating: 4.6,
       reviews: 1123,
-      price: 1800,
+      price: 180,
       category: "cultural",
       duration: "5 hours",
       description: "Visit the Bishnoi villages and experience their unique lifestyle and traditions.",
@@ -104,7 +104,7 @@ const Explore = () => {
       image: img6,
       rating: 4.8,
       reviews: 978,
-      price: 2000,
+      price: 200,
       category: "adventure",
       duration: "2 hours",
       description: "Experience thrilling zip-lining with panoramic views of Jodhpur's blue city.",
@@ -117,7 +117,7 @@ const Explore = () => {
       image: img7,
       rating: 4.7,
       reviews: 645,
-      price: 900,
+      price: 90,
       category: "food",
       duration: "3 hours",
       description: "Explore the vibrant Sardar Market and taste local street food delicacies.",
@@ -130,7 +130,7 @@ const Explore = () => {
       image: img8,
       rating: 4.5,
       reviews: 789,
-      price: 1000,
+      price: 100,
       category: "historical",
       duration: "4 hours",
       description: "Visit the ancient Mandore Gardens and learn about its historical significance.",
@@ -143,7 +143,7 @@ const Explore = () => {
       image: img9,
       rating: 4.9,
       reviews: 432,
-      price: 1300,
+      price: 130,
       category: "cultural",
       duration: "2 hours",
       description: "Learn traditional pottery techniques from local artisans in a hands-on workshop.",
@@ -156,7 +156,7 @@ const Explore = () => {
       image: img10,
       rating: 4.8,
       reviews: 567,
-      price: 1100,
+      price: 110,
       category: "adventure",
       duration: "3 hours",
       description: "Explore the blue city of Jodhpur on a guided cycling tour through narrow lanes.",
@@ -169,7 +169,7 @@ const Explore = () => {
       image: img11,
       rating: 4.7,
       reviews: 345,
-      price: 1600,
+      price: 160,
       category: "cultural",
       duration: "4 hours",
       description: "Learn about traditional textile techniques including block printing and tie-dye.",
@@ -182,7 +182,7 @@ const Explore = () => {
       image: img12,
       rating: 4.9,
       reviews: 234,
-      price: 800,
+      price: 80,
       category: "nature",
       duration: "1.5 hours",
       description: "Practice yoga with stunning views of the sunset over the blue city.",
@@ -195,7 +195,7 @@ const Explore = () => {
       image: img3,
       rating: 4.9,
       reviews: 3245,
-      price: 8500,
+      price: 850,
       category: "adventure",
       duration: "5 hours",
       description: "Sail around Santorini's caldera on a luxury catamaran. Enjoy swimming, snorkeling, and a famous Greek sunset.",
@@ -208,7 +208,7 @@ const Explore = () => {
       image: img4,
       rating: 4.8,
       reviews: 2876,
-      price: 12000,
+      price: 1200,
       category: "historical",
       duration: "12 hours",
       description: "Discover the ancient Incan citadel of Machu Picchu with expert guides. Including train journey and site tour.",
@@ -221,7 +221,7 @@ const Explore = () => {
       image: img5,
       rating: 4.9,
       reviews: 1987,
-      price: 6500,
+      price: 650,
       category: "food",
       duration: "4 hours",
       description: "Sample the best of Tokyo's street food and local delicacies in this evening food tour.",
@@ -234,7 +234,7 @@ const Explore = () => {
       image: img6,
       rating: 4.7,
       reviews: 1543,
-      price: 15000,
+      price: 1500,
       category: "nature",
       duration: "7 hours",
       description: "Chase the Aurora Borealis with professional guides and photographers in the Arctic wilderness.",
@@ -247,7 +247,7 @@ const Explore = () => {
       image: img7,
       rating: 4.8,
       reviews: 2134,
-      price: 9500,
+      price: 950,
       category: "adventure",
       duration: "8 hours",
       description: "Discover the underwater wonders of the Great Barrier Reef. Suitable for beginners and experienced divers.",
@@ -260,7 +260,7 @@ const Explore = () => {
       image: img8,
       rating: 4.9,
       reviews: 1678,
-      price: 7500,
+      price: 750,
       category: "adventure",
       duration: "24 hours",
       description: "Experience the magic of the Sahara with camel trek, luxury camp stay, and traditional Berber entertainment.",
@@ -273,7 +273,7 @@ const Explore = () => {
       image: img9,
       rating: 4.8,
       reviews: 4567,
-      price: 5500,
+      price: 550,
       category: "cultural",
       duration: "3 hours",
       description: "Skip the lines and explore the Vatican Museums, Sistine Chapel, and St. Peter's Basilica with an art historian.",
@@ -286,7 +286,7 @@ const Explore = () => {
       image: img10,
       rating: 4.7,
       reviews: 1897,
-      price: 4500,
+      price: 450,
       category: "cultural",
       duration: "9 hours",
       description: "Visit ancient temples, explore stunning rice terraces, and experience Balinese culture.",
@@ -487,12 +487,12 @@ const Explore = () => {
               <input 
                 type="range" 
                 min="0" 
-                max="5000" 
-                step="500"
+                max="500" 
+                step="50"
                 value={priceRange}
                 onChange={(e) => setPriceRange(Number(e.target.value))}
               />
-              <div className="price-range">₹0 - ₹{priceRange}</div>
+              <div className="price-range">$0 - ${priceRange}</div>
             </div>
           </div>
 
@@ -602,7 +602,7 @@ const Explore = () => {
                     </div>
                     <div className="price">
                       <MdLocalOffer className="price-icon" />
-                      <span className="amount">₹{attraction.price}</span>
+                      <span className="amount">${attraction.price}</span>
                       <span className="per-person">per person</span>
                     </div>
                   </div>
@@ -642,7 +642,7 @@ const Explore = () => {
                 </div>
                 <div className="booking-section">
                   <div className="price-info">
-                    <span className="amount">₹{selectedAttraction.price}</span>
+                    <span className="amount">${selectedAttraction.price}</span>
                     <span className="per-person">per person</span>
                   </div>
                   <button className="book-btn">Book Now</button>

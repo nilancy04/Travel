@@ -41,7 +41,7 @@ const FlightResults = ({ setSelectedFlight, selectedFlight }) => {
               onClick={() => setSelectedFlight(flight)}
               style={{ cursor: 'pointer' }}
             >
-              <p>Price: ₹{Math.round(flight.price.total)}</p>
+              <p>Price: ${Math.round(flight.price.total)}</p>
               <p>Airline: {flight.validatingAirlineCodes.join(', ')}</p>
               {flight.itineraries[0].segments.map((segment, idx) => (
                 <div key={idx}>
@@ -53,7 +53,6 @@ const FlightResults = ({ setSelectedFlight, selectedFlight }) => {
             </div>
           ))}
         </div>
-
         {selectedFlight && (
           <FlightDetailsModal 
             flight={selectedFlight} 

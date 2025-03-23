@@ -170,7 +170,6 @@ const Footer = () => {
                 </div>
                 <div className="footerDiv flex">
                   <small>BEST TRAVEL WEBSITE </small>
-                  <small>COPYRIGHTS RESERVED - NILANCY 2024</small>
                 </div>
               </div>
             </div>

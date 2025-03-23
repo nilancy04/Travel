@@ -11,8 +11,8 @@ const FlightDetailsModal = ({ flight, onClose }) => {
           
           <div className="priceSection">
             <h3>Price Details</h3>
-            <p className="totalPrice">Total Price: ₹{Math.round(flight.price.total)}</p>
-            <p>Base Price: ₹{Math.round(flight.price.base)}</p>
+            <p className="totalPrice">Total Price: ${Math.round(flight.price.total)}</p>
+            <p>Base Price: ${Math.round(flight.price.base)}</p>
           </div>
 
           <div className="airlineSection">

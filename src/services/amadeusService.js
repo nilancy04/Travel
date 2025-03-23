@@ -89,7 +89,7 @@ export const searchFlights = async (origin, destination, date) => {
         destinationLocationCode: destination,
         departureDate: date,
         adults: '1',
-        currencyCode: 'INR',
+        currencyCode: 'USD',
         max: 20,
         nonStop: false
       }
