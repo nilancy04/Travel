@@ -63,7 +63,7 @@
             gap: 2rem;
 
             .smallText{
-                font-size: 1.2rem;
+                font-size: 1.5rem !important;
                 text-transform: uppercase;
                 font-weight: 600;
                 letter-spacing: 4px;
@@ -83,7 +83,7 @@
 
             .homeTitle{
                 position: relative;
-                font-size: 4rem;
+                font-size: 4.5rem;
                 font-weight: 800;
                 color: var(--whiteColor);
                 line-height: 1.3;
